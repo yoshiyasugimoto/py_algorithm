@@ -18,9 +18,17 @@ def merge_lis(left: list, right: list = []) -> list:
 def step(row_lis: list) -> list:
     res = []
     for i in range(0, len(row_lis), 2):
-        breakpoint()
         res.append(merge_lis(*row_lis[i:i + 2]))
     return res
+
+
+def recursive_for_merge_sort(lis: list) -> list:
+    if len(lis) <= 1:
+        return lis
+    mid_idx = len(lis) // 2
+    left_lis = lis[:mid_idx]
+    right_lis = lis[mid_idx:]
+    return merge_lis(recursive_for_merge_sort(left_lis), recursive_for_merge_sort(right_lis))
 
 
 if __name__ == '__main__':
@@ -40,5 +48,4 @@ if __name__ == '__main__':
     print(step3)
     step4 = step(step3)
     print(step4)
-
-
+    print(recursive_for_merge_sort(random_array))
